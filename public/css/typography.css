@@ -1,0 +1,92 @@
+/* =========================================================
+   TYPOGRAPHY
+   
+   📋 НАЗНАЧЕНИЕ:
+   Оформление текста, заголовков и типографики
+   
+   📦 СОДЕРЖИМОЕ:
+   • Основной заголовок (.main-title)
+   • Заголовки секций (.section-title)
+   • Подзаголовки (.subtitle)
+   • Стили для таблиц (.table th, .table td)
+   • Подписи в формах (.form-label)
+   • Никнеймы игроков (.player-name с вариантами)
+   • Акцентный и приглушенный текст
+   
+   🎯 ИСПОЛЬЗОВАНИЕ:
+   Определяет внешний вид всех текстовых элементов
+   ========================================================= */
+
+/* Основной заголовок */
+.main-title {
+  text-align: center;
+  font-size: var(--font-size-display);
+  color: var(--color-text-accent);
+  margin: var(--spacing-xl) auto;
+  text-shadow: 0 0 10px var(--color-text-accent);
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Заголовки секций */
+.section-title {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-xxl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-accent);
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  text-shadow: 0 0 8px var(--color-text-accent);
+}
+
+/* Подзаголовки */
+.subtitle {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Тексты внутри таблиц */
+.table th,
+.table td {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-tight);
+}
+
+/* Подписи в формах */
+.form-label {
+  display: block;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-accent);
+  margin-bottom: var(--spacing-xs);
+  letter-spacing: 0.5px;
+}
+
+/* Никнеймы игроков */
+.player-name {
+  font-weight: var(--font-weight-bold);
+  display: block;
+}
+
+.player-name--1 { color: var(--color-team-1); }
+.player-name--2 { color: var(--color-team-2); }
+.player-name--3 { color: var(--color-team-3); }
+
+.player-name--alt-1 { color: var(--color-team-1-alt); }
+.player-name--alt-2 { color: var(--color-team-2-alt); }
+.player-name--alt-3 { color: var(--color-team-3-alt); }
+
+/* Акцентный текст */
+.text-accent {
+  color: var(--color-text-accent);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Приглушенный текст */
+.text-muted {
+  color: var(--color-text-muted);
+  font-style: italic;
+}

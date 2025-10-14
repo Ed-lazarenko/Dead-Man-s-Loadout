@@ -1,0 +1,200 @@
+/* =========================================================
+   CUSTOMIZATION EXAMPLES & DOCUMENTATION
+   
+   📋 НАЗНАЧЕНИЕ:
+   Примеры использования и документация по кастомизации
+   
+   📦 СОДЕРЖИМОЕ:
+   • Примеры использования кнопок с различными модификаторами
+   • Примеры кастомизации модальных окон
+   • Примеры стилизации форм
+   • Примеры оформления таблиц
+   • Специальные кастомизации для стримингового приложения
+   • Инструкции по добавлению собственных стилей
+   
+   🎯 ИСПОЛЬЗОВАНИЕ:
+   Справочный файл для разработчиков
+   ========================================================= */
+
+/* 
+🎨 ПРИМЕРЫ КАСТОМИЗАЦИИ КНОПОК:
+
+Базовые варианты:
+<button class="btn btn--primary">Основная кнопка</button>
+<button class="btn btn--secondary">Вторичная кнопка</button>
+<button class="btn btn--danger">Опасная кнопка</button>
+<button class="btn btn--ghost">Прозрачная кнопка</button>
+
+Размеры:
+<button class="btn btn--primary btn--small">Маленькая</button>
+<button class="btn btn--primary">Обычная</button>
+<button class="btn btn--primary btn--large">Большая</button>
+
+Эффекты:
+<button class="btn btn--primary btn--glow">С свечением</button>
+<button class="btn btn--primary btn--outline">Контурная</button>
+<button class="btn btn--primary btn--rounded">Скругленная</button>
+<button class="btn btn--primary btn--square">Квадратная</button>
+
+Состояния:
+<button class="btn btn--primary btn--loading">Загрузка</button>
+<button class="btn btn--primary" disabled>Отключена</button>
+
+Комбинирование:
+<button class="btn btn--primary btn--large btn--glow btn--rounded">Комбо</button>
+*/
+
+/* 
+📦 ПРИМЕРЫ КАСТОМИЗАЦИИ МОДАЛОК:
+
+Размеры:
+<div class="modal">
+  <div class="modal__content modal__content--small">Маленькая модалка</div>
+</div>
+
+<div class="modal">
+  <div class="modal__content modal__content--medium">Средняя модалка</div>
+</div>
+
+<div class="modal">
+  <div class="modal__content modal__content--large">Большая модалка</div>
+</div>
+
+<div class="modal">
+  <div class="modal__content modal__content--fullscreen">Полноэкранная</div>
+</div>
+
+Стили:
+<div class="modal">
+  <div class="modal__content modal__content--dark">Темная модалка</div>
+</div>
+
+<div class="modal">
+  <div class="modal__content modal__content--glass">Стеклянная модалка</div>
+</div>
+
+<div class="modal">
+  <div class="modal__content modal__content--no-padding">Без отступов</div>
+</div>
+
+<div class="modal">
+  <div class="modal__content modal__content--no-border">Без границ</div>
+</div>
+
+Заголовки:
+<h2 class="modal__title">Обычный заголовок</h2>
+<h2 class="modal__title modal__title--no-line">Без подчеркивания</h2>
+
+Действия:
+<div class="modal__actions">Обычные действия</div>
+<div class="modal__actions modal__actions--center">По центру</div>
+<div class="modal__actions modal__actions--right">Справа</div>
+<div class="modal__actions modal__actions--vertical">Вертикально</div>
+*/
+
+/* 
+📝 ПРИМЕРЫ КАСТОМИЗАЦИИ ФОРМ:
+
+Группы:
+<div class="form-group">Обычная группа</div>
+<div class="form-group form-group--inline">Инлайн группа</div>
+
+Лейблы:
+<label class="form-label">Обычный лейбл</label>
+<label class="form-label form-label--required">Обязательное поле</label>
+<label class="form-label form-label--optional">Опциональное поле</label>
+
+Поля ввода:
+<input class="form-input" type="text" />
+<input class="form-input form-input--large" type="text" />
+<input class="form-input form-input--small" type="text" />
+<input class="form-input form-input--error" type="text" />
+<input class="form-input form-input--success" type="text" />
+
+Селекты:
+<select class="form-select">Обычный селект</select>
+<select class="form-select form-select--large">Большой селект</select>
+<select class="form-select form-select--small">Маленький селект</select>
+
+Сообщения:
+<span class="form-error">Ошибка валидации</span>
+<span class="form-success">Успешная валидация</span>
+*/
+
+/* 
+📊 ПРИМЕРЫ КАСТОМИЗАЦИИ ТАБЛИЦ:
+
+Размеры:
+<table class="table table--small">Маленькая таблица</table>
+<table class="table">Обычная таблица</table>
+<table class="table table--large">Большая таблица</table>
+
+Стили:
+<table class="table table--bordered">С границами</table>
+<table class="table table--striped">Полосатая</table>
+<table class="table table--hover">С эффектом наведения</table>
+<table class="table table--compact">Компактная</table>
+
+Выравнивание:
+<table class="table table--left">Выравнивание по левому краю</table>
+<table class="table table--right">Выравнивание по правому краю</table>
+
+Специальные ячейки:
+<td class="table__cell--highlight">Выделенная ячейка</td>
+<td class="table__cell--danger">Опасная ячейка</td>
+<td class="table__cell--success">Успешная ячейка</td>
+<td class="table__cell--warning">Предупреждающая ячейка</td>
+*/
+
+/* 
+🎯 СПЕЦИАЛЬНЫЕ КАСТОМИЗАЦИИ ДЛЯ ПРИЛОЖЕНИЯ:
+
+Кнопки для стрима:
+<button class="btn btn--primary btn--glow btn--large">🚀 Начать игру</button>
+<button class="btn btn--danger btn--outline">⚠️ Экстренная остановка</button>
+<button class="btn btn--secondary btn--rounded">🎮 Игровые действия</button>
+
+Модалки для команд:
+<div class="modal">
+  <div class="modal__content modal__content--medium modal__content--glass">
+    <h2 class="modal__title modal__title--no-line">Команда игроков</h2>
+    <!-- контент -->
+  </div>
+</div>
+
+Таблицы для лидерборда:
+<table class="table table--striped table--hover table--bordered">
+  <thead>
+    <tr>
+      <th class="table__cell--highlight">Команда</th>
+      <th class="table__cell--success">Очки</th>
+      <th class="table__cell--warning">Штрафы</th>
+    </tr>
+  </thead>
+</table>
+
+Формы для настроек:
+<div class="form-group form-group--inline">
+  <label class="form-label form-label--required">Имя игрока</label>
+  <input class="form-input form-input--large" type="text" />
+</div>
+*/
+
+/* 
+🔧 КАК ДОБАВИТЬ СОБСТВЕННЫЕ СТИЛИ:
+
+1. Используйте существующие классы как основу:
+   .btn.btn--primary { /* ваши стили */ }
+
+2. Создавайте новые модификаторы:
+   .btn--custom { background: #ff6b35; }
+
+3. Переопределяйте переменные для глобальных изменений:
+   :root { --color-primary: #ff6b35; }
+
+4. Используйте !important только в крайних случаях:
+   .btn.btn--special { background: red !important; }
+
+5. Следуйте BEM методологии:
+   .component__element--modifier { /* стили */ }
+*/

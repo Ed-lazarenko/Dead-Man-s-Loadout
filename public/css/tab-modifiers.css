@@ -1,0 +1,184 @@
+/* =========================================================
+   TAB-MODIFIERS STYLES
+   
+   📋 НАЗНАЧЕНИЕ:
+   Стили для вкладки "Модификаторы" - система модификаторов и участников
+   
+   📦 СОДЕРЖИМОЕ:
+   • Макет колонок (.modifiers-columns, .modifiers-left, .modifiers-right)
+   • Прокрутка таблиц (.table-scroll)
+   • Липкие заголовки (.sticky-header)
+   • Заголовки секций (.modifiers-section h2)
+   • Таблицы модификаторов (.mod-table)
+   • Кнопка "Начать игру" (.btn-neon)
+   • Стили для таблиц участников
+   
+   🎯 ИСПОЛЬЗОВАНИЕ:
+   Специфичные стили для системы модификаторов игры
+   ========================================================= */
+
+/* ═════════════ 1. Макет колонок ═════════════ */
+.modifiers-columns{
+  display:flex;
+}
+.modifiers-left  { flex:0 0 66.66%; max-width:66.66%; }  /* 2 / 3 */
+.modifiers-right { flex:0 0 33.33%; max-width:33.33%; }  /* 1 / 3 */
+
+/* колонка = вертикальный flex, чтобы кнопка «прилипала» снизу */
+.modifiers-section{ display:flex; flex-direction:column; }
+
+/* ═════════════ 2. Прокрутка таблиц ═════════════ */
+.table-scroll{
+  max-height:60vh;          /* тело таблицы прокручивается, шапка фикс. */
+  overflow-y:auto;
+}
+
+/* фиксируем шапку */
+.modifiers-table thead th{
+  position:sticky;
+  top:0;
+  z-index:2;
+}
+
+/* ═════════════ 3. Заголовки секций ═════════════ */
+.modifiers-section h2{
+  margin-bottom:14px;
+  text-align:center;
+
+  font:700 20px/1 var(--font,inherit);
+  color:#00f0ff;
+  text-shadow:0 0 8px rgba(0,240,255,.9),
+               0 0 12px rgba(0,240,255,.4);
+}
+
+/* ═════════════ 4. Таблицы (оформление) ═════════════ */
+.modifiers-table{
+  width:100%;
+  border-collapse:collapse;
+  background:#111;
+  font-size:14px;
+  border:1px solid #00ffff;
+}
+.modifiers-table th,
+.modifiers-table td{
+  padding:8px 12px;
+  border:1px solid #00cccc;
+  vertical-align:top;
+    /*   вот эти две строки выравнивают   */
+  text-align:center;       /* по горизонтали */
+  vertical-align:middle;   /* по вертикали   */
+}
+.modifiers-table th{
+  background:#1e1e1e;
+  color:#00ffff;
+  font-weight:700;
+  text-shadow:0 0 3px rgba(0,255,255,.5);
+}
+.modifiers-table tr:nth-child(even){ background:#181818; }
+.modifiers-table tr:nth-child(odd) { background:#121212; }
+
+.modifiers-table td:first-child{
+  color:#aad8ff;
+  font-weight:600;
+  text-shadow:0 0 4px rgba(138,215,255,.5);
+}
+.modifiers-table td:nth-child(2)
+{
+  font-weight:550; color:#a296ff;
+}
+
+.modifiers-table td:nth-child(3){
+  font-weight:550; color:#00f737bd;
+}
+
+/* ═════════════ 5. Кнопки ═════════════ */
+.modifiers-refresh-button{
+  width:100%;
+  margin-top:1rem;
+  padding:0.1rem 1.2rem;
+
+  background:#5eff9c;
+  color:#000;
+  border:none;
+  border-radius:6px;
+  font:520 16px/1 var(--font,inherit);
+  cursor:pointer;
+  transition:background .2s, box-shadow .2s;
+}
+.modifiers-refresh-button:hover{
+  background:#00e1ff;
+  box-shadow:0 0 8px #00e1ff;
+}
+
+.modifiers-left  { flex:0 0 66.66%; max-width:66.66%; }
+.modifiers-right { flex:0 0 33.33%; max-width:33.33%; }
+
+/*  “stack” — верт‑флекс: все дочерние идут столбцом, без прокрутки  */
+.stack{
+  display:flex;
+  flex-direction:column;
+}
+
+/* правая колонка растягиваем по высоте */
+.modifiers-right{
+  display:flex;
+  flex-direction:column;
+}
+.modifiers-right > *:last-child{
+  flex:1 1 auto;      /* таблица участников занимает весь остаток высоты */
+}
+
+/* кнопка во всю ширину */
+.btn-neon.full-width{ width:100%; }
+
+/* ─── единый вид заголовков таблиц ─── */
+.modifiers-table th{
+  background:#0e2225;                 /* как в лидерборде */
+  color:#00e7f8;
+  font-weight:700;
+  text-transform:uppercase;
+  text-shadow:0 0 3px rgba(0,255,255,.5);
+}
+
+/* ─── неоновая кнопка «Начать игру» ─── */
+.btn-neon{
+  display:block;
+  width:100%;
+  margin:20px 0;
+
+  background:#5eff9c;
+  color:#000;
+  font:700 18px/1 var(--font,inherit);
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+
+  transition:background .2s, box-shadow .2s;
+  box-shadow:0 0 10px #5eff9c;
+}
+.btn-neon:hover{
+  background:#00e1ff;
+  box-shadow:0 0 12px #00e1ff;
+}
+
+/* ═════════════ ВЫРАВНИВАЕМ КОЛОНКИ ═════════════ */
+
+/* обнуляем внешние отступы у заголовков внутри колонок */
+.modifiers-section h2,
+.modifiers-section h3{
+  margin-top:0;        /* ← не будет «скачка» высоты */
+}
+
+/* одинаковый внутренний отступ у секций,
+   чтобы контент не «лип» к синей рамке */
+.modifiers-section{
+  padding:8px 12px;    /* можно увеличить/уменьшить по вкусу */
+  box-sizing:border-box;
+}
+
+/* колонки уже flex‑элементы (см. ранние правки).
+   Чтобы верхний край всех внутренних блоков был ровно на одной линии,
+   убираем лишнюю “линию” (1px) которую давал border таблицы: */
+.modifiers-table{
+  margin-top:0;        /* убираем возможный сдвиг */
+}
