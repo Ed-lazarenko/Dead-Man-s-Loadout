@@ -6,7 +6,7 @@ window.loadoutData = {
   /* сами картинки */
   cells: Array.from({ length: 5 }, (_, row) =>
     Array.from({ length: 6 }, (_, col) => ({
-      image: `/Loadouts/Базовый-Калибры/${col + 1}-${row + 1}.png`
+      image: `/Loadouts/Light-Caliber/${col + 1}-${row + 1}.png`
     }))
   ),
 
