@@ -55,27 +55,27 @@
 .modifiers-table{
   width:100%;
   border-collapse:collapse;
-  background:#111;
-  font-size:14px;
-  border:1px solid #00ffff;
+  background: var(--color-bg-secondary);
+  font-size: var(--font-size-md);
+  border: var(--border-width-thin) solid var(--color-accent);
 }
 .modifiers-table th,
 .modifiers-table td{
-  padding:8px 12px;
-  border:1px solid #00cccc;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: var(--border-width-thin) solid var(--color-border-secondary);
   vertical-align:top;
     /*   вот эти две строки выравнивают   */
   text-align:center;       /* по горизонтали */
   vertical-align:middle;   /* по вертикали   */
 }
 .modifiers-table th{
-  background:#1e1e1e;
-  color:#00ffff;
-  font-weight:700;
-  text-shadow:0 0 3px rgba(0,255,255,.5);
+  background: var(--color-bg-tertiary);
+  color: var(--color-accent);
+  font-weight: var(--font-weight-bold);
+  text-shadow: var(--shadow-glow-primary);
 }
-.modifiers-table tr:nth-child(even){ background:#181818; }
-.modifiers-table tr:nth-child(odd) { background:#121212; }
+.modifiers-table tr:nth-child(even){ background: var(--color-bg-secondary); }
+.modifiers-table tr:nth-child(odd) { background: var(--color-bg-primary); }
 
 .modifiers-table td:first-child{
   color:#aad8ff;
@@ -110,10 +110,7 @@
   box-shadow:0 0 8px #00e1ff;
 }
 
-.modifiers-left  { flex:0 0 66.66%; max-width:66.66%; }
-.modifiers-right { flex:0 0 33.33%; max-width:33.33%; }
-
-/*  “stack” — верт‑флекс: все дочерние идут столбцом, без прокрутки  */
+/*  "stack" — верт‑флекс: все дочерние идут столбцом, без прокрутки  */
 .stack{
   display:flex;
   flex-direction:column;
@@ -133,32 +130,32 @@
 
 /* ─── единый вид заголовков таблиц ─── */
 .modifiers-table th{
-  background:#0e2225;                 /* как в лидерборде */
-  color:#00e7f8;
-  font-weight:700;
+  background: var(--color-primary-dark);                 /* как в лидерборде */
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
   text-transform:uppercase;
-  text-shadow:0 0 3px rgba(0,255,255,.5);
+  text-shadow: var(--shadow-glow-primary);
 }
 
 /* ─── неоновая кнопка «Начать игру» ─── */
 .btn-neon{
   display:block;
   width:100%;
-  margin:20px 0;
+  margin: var(--spacing-xl) 0;
 
-  background:#5eff9c;
-  color:#000;
-  font:700 18px/1 var(--font,inherit);
+  background: var(--color-secondary);
+  color: var(--color-bg-primary);
+  font: var(--font-weight-bold) var(--font-size-xl)/1 var(--font-family-primary);
   border:none;
-  border-radius:6px;
+  border-radius: var(--border-radius-md);
   cursor:pointer;
 
-  transition:background .2s, box-shadow .2s;
-  box-shadow:0 0 10px #5eff9c;
+  transition: background var(--transition-normal), box-shadow var(--transition-normal);
+  box-shadow: var(--shadow-glow-secondary);
 }
 .btn-neon:hover{
-  background:#00e1ff;
-  box-shadow:0 0 12px #00e1ff;
+  background: var(--color-accent);
+  box-shadow: var(--shadow-glow-primary);
 }
 
 /* ═════════════ ВЫРАВНИВАЕМ КОЛОНКИ ═════════════ */
@@ -178,7 +175,7 @@
 
 /* колонки уже flex‑элементы (см. ранние правки).
    Чтобы верхний край всех внутренних блоков был ровно на одной линии,
-   убираем лишнюю “линию” (1px) которую давал border таблицы: */
+   убираем лишнюю "линию" (1px) которую давал border таблицы: */
 .modifiers-table{
   margin-top:0;        /* убираем возможный сдвиг */
 }

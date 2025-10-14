@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.openPenaltyEditModal = function (teamIndex, currentValue = 0) {
     editingIndex = teamIndex;
     input.value  = currentValue ?? 0;
-    modal.classList.remove('leaderboard-hidden');
+    modal.classList.remove('modal-hidden');
     input.focus();
   };
 
@@ -33,10 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
                          JSON.stringify(window.leaderboardData));
 
     window.createLeaderboard?.();
-    modal.classList.add('leaderboard-hidden');
+    modal.classList.add('modal-hidden');
   };
 
   /* ─── отмена ─── */
   cancelBtn.onclick = () =>
-    modal.classList.add('leaderboard-hidden');
+    modal.classList.add('modal-hidden');
 });

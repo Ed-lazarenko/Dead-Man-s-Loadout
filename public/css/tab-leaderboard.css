@@ -31,20 +31,20 @@
   table-layout:fixed;
   border-collapse:collapse;
   word-wrap:break-word;
-  font-family:'Cinzel',serif;
-  background:rgba(20,20,20,.8);
-  color:#fff;
+  font-family: var(--font-family-primary);
+  background: var(--color-bg-card);
+  color: var(--color-text-primary);
 }
 .leaderboard-table th,
 .leaderboard-table td{
-  border:2px solid #00e7f8;
-  padding:10px;
+  border: var(--border-width-medium) solid var(--color-border-primary);
+  padding: var(--spacing-md);
   text-align:center;
-  font-size:16px;
+  font-size: var(--font-size-lg);
 }
 .leaderboard-table th{
-  background:#0e2225;
-  color:#00e7f8;
+  background: var(--color-primary-dark);
+  color: var(--color-primary);
   text-transform:uppercase;
 }
 
@@ -67,15 +67,15 @@
 
 
 /* свежая, но хорошо‑читаемая мятная палитра */
-.nick1{color:#9fffd1;}    /* светлая мята  */
-.nick2{color:#6dffbc;}    /* базовая мята  */
-.nick3{color:#3fffa9;}    /* чуть ярче     */
+.nick1{color: var(--color-team-1-alt);}    /* светлая мята  */
+.nick2{color: var(--color-team-2-alt);}    /* базовая мята  */
+.nick3{color: var(--color-team-3-alt);}    /* чуть ярче     */
 
 /* ───── колонка «Итог» ───── */
 .leaderboard-table td:last-child{
-  font-weight:700;
-  background:#2a2a2a;
-  color: #5eff9c;
+  font-weight: var(--font-weight-bold);
+  background: var(--color-bg-tertiary);
+  color: var(--color-secondary);
 }
 
 /* ───── блок кнопок под таблицей ───── */
@@ -95,30 +95,30 @@
 }
 .leaderboard-toolbar button:active{transform:scale(.97);}
 
-#add-game-button   {background:#5eff9c;color:#000;}
-#add-game-button:hover{background:#3ddf7e;}
+#add-game-button   {background: var(--color-secondary); color: var(--color-bg-primary);}
+#add-game-button:hover{background: var(--color-secondary-hover);}
 
-#add-team-button   {background:#00e7f8;color:#000;}
-#add-team-button:hover{background:#00c2d4;}
+#add-team-button   {background: var(--color-primary); color: var(--color-bg-primary);}
+#add-team-button:hover{background: var(--color-primary-hover);}
 
-#remove-team-button{background:#ff4e4e;color:#fff;}
-#remove-team-button:hover{background:#e23c3c;}
+#remove-team-button{background: var(--color-danger); color: var(--color-text-primary);}
+#remove-team-button:hover{background: var(--color-danger-hover);}
 
 /* ───── модальные окна ───── */
 .leaderboard-modal{
   position:fixed; inset:0;
   display:flex; justify-content:center; align-items:center;
-  background:rgba(0,0,0,.85);
-  z-index:1000;
+  background: var(--color-bg-modal);
+  z-index: var(--z-modal);
 }
-.leaderboard-hidden{display:none;}
+.modal-hidden{display:none;}
 
 .leaderboard-modal-content{
-  background:#1a1a1a;
+  background: var(--color-bg-card);
   width:320px;
-  padding:22px 24px 28px;
-  border-radius:10px;
-  color:#fff;
+  padding: var(--spacing-xl) var(--spacing-xxl) var(--spacing-xxxl);
+  border-radius: var(--border-radius-xl);
+  color: var(--color-text-primary);
 }
 
 /* заголовок модалки */
