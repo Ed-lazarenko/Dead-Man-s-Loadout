@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ——— helper ——— */
   const $  = id => document.getElementById(id);
-  const show  = el => { if (el) { el.classList.remove('leaderboard-hidden'); el.style.display = 'flex'; } };
-  const hide  = el => { if (el) { el.classList.add   ('leaderboard-hidden'); el.style.display = 'none'; } };
+  const show  = el => { if (el) { el.classList.remove('modal-hidden'); el.style.display = 'flex'; } };
+  const hide  = el => { if (el) { el.classList.add   ('modal-hidden'); el.style.display = 'none'; } };
 
   /* проверка существования хотя бы одной «лебедород»-кнопки */
   if (!$('add-team-button')) {
