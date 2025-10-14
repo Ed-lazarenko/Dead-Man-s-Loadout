@@ -1,0 +1,211 @@
+/* =========================================================
+   THEME PRESETS
+   
+   📋 НАЗНАЧЕНИЕ:
+   Готовые темы для быстрого переключения стилей
+   
+   📦 СОДЕРЖИМОЕ:
+   • Темная тема (.theme-dark) - по умолчанию
+   • Светлая тема (.theme-light)
+   • Геймерская тема (.theme-gaming) - зеленый/розовый
+   • Океанская тема (.theme-ocean) - синие оттенки
+   • Огненная тема (.theme-fire) - оранжевые оттенки
+   • Розовая тема (.theme-pink) - розовые оттенки
+   • Природная тема (.theme-nature) - зеленые оттенки
+   • Неоновая тема (.theme-neon) - яркие неоновые цвета
+   • Кастомные комбинации (градиенты, эффекты)
+   
+   🎯 ИСПОЛЬЗОВАНИЕ:
+   Применяется к body для глобального изменения темы
+   ========================================================= */
+
+/* 🌙 ТЕМНАЯ ТЕМА (по умолчанию) */
+.theme-dark {
+  --color-bg-primary: #0d0d0d;
+  --color-bg-secondary: #1a1a1a;
+  --color-bg-tertiary: #333;
+  --color-text-primary: #fff;
+  --color-text-secondary: #ccc;
+  --color-text-muted: #999;
+}
+
+/* ☀️ СВЕТЛАЯ ТЕМА */
+.theme-light {
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8f9fa;
+  --color-bg-tertiary: #e9ecef;
+  --color-text-primary: #212529;
+  --color-text-secondary: #6c757d;
+  --color-text-muted: #adb5bd;
+  --color-border-secondary: #dee2e6;
+  --color-border-muted: #e9ecef;
+}
+
+/* 🎮 ГЕЙМЕРСКАЯ ТЕМА */
+.theme-gaming {
+  --color-primary: #00ff41;
+  --color-secondary: #ff0080;
+  --color-accent: #00ffff;
+  --color-bg-primary: #0a0a0a;
+  --color-bg-secondary: #1a0a1a;
+  --color-bg-tertiary: #2a0a2a;
+  --color-text-accent: #00ff41;
+  --shadow-glow-primary: 0 0 20px #00ff41;
+  --shadow-glow-secondary: 0 0 20px #ff0080;
+}
+
+/* 🌊 ОКЕАНСКАЯ ТЕМА */
+.theme-ocean {
+  --color-primary: #00b4d8;
+  --color-secondary: #0077b6;
+  --color-accent: #90e0ef;
+  --color-bg-primary: #001d3d;
+  --color-bg-secondary: #003566;
+  --color-bg-tertiary: #005f73;
+  --color-text-accent: #90e0ef;
+  --shadow-glow-primary: 0 0 15px #00b4d8;
+  --shadow-glow-secondary: 0 0 15px #0077b6;
+}
+
+/* 🔥 ОГНЕННАЯ ТЕМА */
+.theme-fire {
+  --color-primary: #ff6b35;
+  --color-secondary: #f7931e;
+  --color-accent: #ffd23f;
+  --color-bg-primary: #2c1810;
+  --color-bg-secondary: #3d2315;
+  --color-bg-tertiary: #4e2e1a;
+  --color-text-accent: #ff6b35;
+  --shadow-glow-primary: 0 0 15px #ff6b35;
+  --shadow-glow-secondary: 0 0 15px #f7931e;
+}
+
+/* 🌸 РОЗОВАЯ ТЕМА */
+.theme-pink {
+  --color-primary: #ff9ff3;
+  --color-secondary: #f368e0;
+  --color-accent: #ff6b9d;
+  --color-bg-primary: #2d1b2d;
+  --color-bg-secondary: #3d2a3d;
+  --color-bg-tertiary: #4d394d;
+  --color-text-accent: #ff9ff3;
+  --shadow-glow-primary: 0 0 15px #ff9ff3;
+  --shadow-glow-secondary: 0 0 15px #f368e0;
+}
+
+/* 🍃 ПРИРОДНАЯ ТЕМА */
+.theme-nature {
+  --color-primary: #52c41a;
+  --color-secondary: #389e0d;
+  --color-accent: #95de64;
+  --color-bg-primary: #0d1f0d;
+  --color-bg-secondary: #1a2f1a;
+  --color-bg-tertiary: #273f27;
+  --color-text-accent: #52c41a;
+  --shadow-glow-primary: 0 0 15px #52c41a;
+  --shadow-glow-secondary: 0 0 15px #389e0d;
+}
+
+/* 🎨 НЕОНОВАЯ ТЕМА */
+.theme-neon {
+  --color-primary: #00ffff;
+  --color-secondary: #ff00ff;
+  --color-accent: #ffff00;
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #0a0a0a;
+  --color-bg-tertiary: #1a1a1a;
+  --color-text-accent: #00ffff;
+  --shadow-glow-primary: 0 0 25px #00ffff;
+  --shadow-glow-secondary: 0 0 25px #ff00ff;
+  --border-width-medium: 3px;
+}
+
+/* 🎯 КАК ИСПОЛЬЗОВАТЬ ТЕМЫ:
+
+1. Добавьте класс темы к body:
+   <body class="theme-gaming">
+
+2. Или переключайте темы через JavaScript:
+   document.body.className = 'theme-ocean';
+
+3. Создайте переключатель тем:
+   <select onchange="document.body.className = this.value">
+     <option value="theme-dark">Темная</option>
+     <option value="theme-light">Светлая</option>
+     <option value="theme-gaming">Геймерская</option>
+     <option value="theme-ocean">Океанская</option>
+   </select>
+
+4. Комбинируйте с кастомными стилями:
+   .theme-gaming .btn--special {
+     background: var(--gradient-primary);
+   }
+*/
+
+/* 🎨 КАСТОМНЫЕ КОМБИНАЦИИ */
+
+/* Кнопка с градиентом */
+.btn--gradient {
+  background: var(--gradient-primary);
+  border: none;
+}
+
+.btn--gradient:hover {
+  background: var(--gradient-danger);
+  transform: scale(1.05);
+}
+
+/* Модалка с эффектом стекла */
+.modal--glass .modal__content {
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Таблица с неоновым эффектом */
+.table--neon {
+  border: 2px solid var(--color-primary);
+  box-shadow: 0 0 20px var(--color-primary);
+}
+
+.table--neon th {
+  background: var(--color-primary);
+  color: var(--color-bg-primary);
+  text-shadow: 0 0 10px currentColor;
+}
+
+/* Анимированная кнопка */
+.btn--pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Кнопка с волновым эффектом */
+.btn--ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn--ripple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn--ripple:active::before {
+  width: 300px;
+  height: 300px;
+}

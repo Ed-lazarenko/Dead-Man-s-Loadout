@@ -1,0 +1,178 @@
+/* =========================================================
+   CSS VARIABLES & DESIGN SYSTEM
+   
+   📋 НАЗНАЧЕНИЕ:
+   Централизованная система дизайна для игры "Набор мертвеца"
+   
+   📦 СОДЕРЖИМОЕ:
+   • Цветовая палитра (primary, secondary, accent, danger, warning, success)
+   • Цвета для команд игроков (team-1, team-2, team-3)
+   • Нейтральные цвета (фон, текст, границы)
+   • Система размеров и отступов (spacing: xs, sm, md, lg, xl, xxl, xxxl)
+   • Радиусы скругления (border-radius: sm, md, lg, xl)
+   • Толщина границ (border-width: thin, medium, thick)
+   • Типографика (шрифты, размеры, веса, высота строк)
+   • Эффекты (тени, переходы, z-index слои)
+   • Дополнительные цвета для кастомизации (custom-1 до custom-8)
+   • Готовые градиенты и прозрачности
+   • Расширенные размеры и эффекты
+   
+   🎯 ИСПОЛЬЗОВАНИЕ:
+   Подключается первым в HTML для обеспечения всех переменных
+   ========================================================= */
+
+:root {
+  /* 🎨 ЦВЕТОВАЯ ПАЛИТРА */
+  --color-primary: #00e7f8;        /* Основной бирюзовый */
+  --color-primary-hover: #00c2d4;   /* Бирюзовый при наведении */
+  --color-primary-dark: #0e2225;    /* Темный бирюзовый фон */
+  
+  --color-secondary: #5eff9c;       /* Зеленый акцент */
+  --color-secondary-hover: #3ddf7e; /* Зеленый при наведении */
+  
+  --color-accent: #00f7ff;         /* Светлый акцент */
+  --color-accent-hover: #00d4e6;    /* Светлый акцент при наведении */
+  
+  --color-danger: #ff4e4e;         /* Красный для удаления */
+  --color-danger-hover: #e23c3c;   /* Красный при наведении */
+  
+  --color-warning: #ffae00;        /* Оранжевый для предупреждений */
+  --color-success: #00ff68;        /* Зеленый для успеха */
+  
+  /* 🎨 НЕЙТРАЛЬНЫЕ ЦВЕТА */
+  --color-bg-primary: #0d0d0d;      /* Основной фон */
+  --color-bg-secondary: #1a1a1a;    /* Вторичный фон */
+  --color-bg-tertiary: #333;        /* Третичный фон */
+  --color-bg-card: #1a1a1a;         /* Фон карточек */
+  --color-bg-modal: rgba(0,0,0,0.85); /* Фон модалок */
+  
+  --color-text-primary: #fff;       /* Основной текст */
+  --color-text-secondary: #ccc;     /* Вторичный текст */
+  --color-text-muted: #999;         /* Приглушенный текст */
+  --color-text-accent: #00e7f8;     /* Акцентный текст */
+  
+  --color-border-primary: #00e7f8;  /* Основная граница */
+  --color-border-secondary: #555;   /* Вторичная граница */
+  --color-border-muted: #444;       /* Приглушенная граница */
+  
+  /* 🎨 ЦВЕТА ДЛЯ КОМАНД */
+  --color-team-1: #f4d9ad;          /* Игрок 1 */
+  --color-team-2: #a0ff7a;          /* Игрок 2 */
+  --color-team-3: #ffdd57;          /* Игрок 3 */
+  
+  --color-team-1-alt: #9fffd1;      /* Альтернативный игрок 1 */
+  --color-team-2-alt: #6dffbc;      /* Альтернативный игрок 2 */
+  --color-team-3-alt: #3fffa9;      /* Альтернативный игрок 3 */
+  
+  /* 📏 РАЗМЕРЫ И ОТСТУПЫ */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-xxl: 24px;
+  --spacing-xxxl: 32px;
+  
+  --border-radius-sm: 4px;
+  --border-radius-md: 6px;
+  --border-radius-lg: 8px;
+  --border-radius-xl: 10px;
+  
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 3px;
+  
+  /* 🔤 ТИПОГРАФИКА */
+  --font-family-primary: 'Cinzel', serif;
+  --font-size-xs: 10px;
+  --font-size-sm: 12px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-xxl: 20px;
+  --font-size-xxxl: 24px;
+  --font-size-display: 36px;
+  
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.4;
+  --line-height-relaxed: 1.6;
+  
+  /* 🎭 ЭФФЕКТЫ */
+  --shadow-sm: 0 0 4px rgba(0,0,0,0.3);
+  --shadow-md: 0 0 8px rgba(0,0,0,0.4);
+  --shadow-lg: 0 0 12px rgba(0,0,0,0.5);
+  --shadow-glow-primary: 0 0 10px var(--color-primary);
+  --shadow-glow-secondary: 0 0 10px var(--color-secondary);
+  
+  --transition-fast: 0.1s ease;
+  --transition-normal: 0.2s ease;
+  --transition-slow: 0.3s ease;
+  
+  /* 🎨 ДОПОЛНИТЕЛЬНЫЕ ЦВЕТА ДЛЯ КАСТОМИЗАЦИИ */
+  --color-custom-1: #ff6b35;        /* Оранжевый */
+  --color-custom-2: #4ecdc4;        /* Бирюзовый */
+  --color-custom-3: #45b7d1;        /* Голубой */
+  --color-custom-4: #96ceb4;        /* Мятный */
+  --color-custom-5: #feca57;        /* Желтый */
+  --color-custom-6: #ff9ff3;        /* Розовый */
+  --color-custom-7: #54a0ff;        /* Синий */
+  --color-custom-8: #5f27cd;        /* Фиолетовый */
+  
+  /* 🎨 ГРАДИЕНТЫ */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  --gradient-danger: linear-gradient(135deg, var(--color-danger), #ff7675);
+  --gradient-success: linear-gradient(135deg, var(--color-success), #00b894);
+  --gradient-warning: linear-gradient(135deg, var(--color-warning), #fdcb6e);
+  
+  /* 🎨 ПРОЗРАЧНОСТИ */
+  --opacity-light: 0.1;
+  --opacity-medium: 0.3;
+  --opacity-heavy: 0.7;
+  
+  /* 📏 ДОПОЛНИТЕЛЬНЫЕ РАЗМЕРЫ */
+  --spacing-micro: 2px;
+  --spacing-giant: 48px;
+  --spacing-huge: 64px;
+  
+  --border-radius-micro: 2px;
+  --border-radius-giant: 16px;
+  --border-radius-huge: 24px;
+  
+  /* 🔤 ДОПОЛНИТЕЛЬНЫЕ ШРИФТЫ */
+  --font-size-micro: 8px;
+  --font-size-giant: 32px;
+  --font-size-huge: 48px;
+  
+  --font-weight-thin: 100;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+  
+  /* 🎭 ДОПОЛНИТЕЛЬНЫЕ ЭФФЕКТЫ */
+  --shadow-micro: 0 0 2px rgba(0,0,0,0.2);
+  --shadow-giant: 0 0 20px rgba(0,0,0,0.6);
+  --shadow-huge: 0 0 30px rgba(0,0,0,0.8);
+  
+  --transition-micro: 0.05s ease;
+  --transition-giant: 0.5s ease;
+  --transition-huge: 1s ease;
+  
+  /* 📱 ДОПОЛНИТЕЛЬНЫЕ Z-INDEX */
+  --z-background: -1;
+  --z-default: 0;
+  --z-sticky: 10;
+  --z-fixed: 50;
+  --z-overlay: 200;
+  --z-popover: 300;
+  --z-tooltip: 400;
+  --z-toast: 500;
+  --z-modal: 1000;
+  --z-dropdown: 1100;
+  --z-sticky: 1200;
+  --z-tooltip: 1300;
+  --z-notification: 1400;
+  --z-maximum: 9999;

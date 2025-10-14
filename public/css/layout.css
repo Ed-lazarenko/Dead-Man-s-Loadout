@@ -1,0 +1,81 @@
+/* =========================================================
+   LAYOUT & STRUCTURE
+   
+   📋 НАЗНАЧЕНИЕ:
+   Общий layout и структура интерфейса приложения
+   
+   📦 СОДЕРЖИМОЕ:
+   • Контейнер вкладок (.tabs)
+   • Кнопки вкладок (.tab-button, .tab-button--active)
+   • Контент вкладок (.tab-content, .tab-content--active)
+   • Основной контейнер (.container)
+   • Базовые модальные окна (.modal, .modal--active)
+   
+   🎯 ИСПОЛЬЗОВАНИЕ:
+   Определяет основную структуру и навигацию приложения
+   ========================================================= */
+
+/* Контейнер вкладок */
+.tabs {
+  display: flex;
+}
+
+/* 🔘 Кнопки вкладок */
+.tab-button {
+  flex: 1;
+  padding: var(--spacing-md);
+  background: var(--color-bg-secondary);
+  border: none;
+  color: var(--color-text-accent);
+  cursor: pointer;
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  transition: all var(--transition-normal);
+}
+
+.tab-button:hover {
+  background: var(--color-primary-dark);
+}
+
+/* 🔘 Активная вкладка */
+.tab-button--active {
+  background: var(--color-text-accent);
+  color: var(--color-bg-primary);
+}
+
+/* 📄 Контент вкладки (по умолчанию скрыт) */
+.tab-content {
+  display: none;
+  padding: var(--spacing-xl);
+}
+
+/* 📄 Активный контент вкладки */
+.tab-content--active {
+  display: block;
+  font-size: var(--font-size-lg);
+}
+
+/* 📦 Основный контейнер вокруг вкладок */
+.container {
+  border: var(--border-width-medium) solid var(--color-border-primary);
+  margin: var(--spacing-xl);
+  padding: 0;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+/* 🖼️ Модальное окно (например, показ изображения) */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--color-bg-modal);
+  justify-content: center;
+  align-items: center;
+  z-index: var(--z-modal);
+}
+
+.modal--active {
+  display: flex;
+}

@@ -1,0 +1,53 @@
+/* =========================================================
+   TAB-CONTROLS STYLES
+   
+   📋 НАЗНАЧЕНИЕ:
+   Стили для вкладки "Управление" - административные кнопки
+   
+   📦 СОДЕРЖИМОЕ:
+   • Кнопка "Сбросить всё" (.controls-reset)
+   • Кнопка "Сбросить счёт" (.controls-reset)
+   • Стили для области управления (#controls-area)
+   
+   🎯 ИСПОЛЬЗОВАНИЕ:
+   Специфичные стили для административных функций
+   ========================================================= */
+   .controls-reset{
+    /* — базовый вид — */
+    display:block;           /* ► блок = тянется на всю строку */
+    width:100%;              /* ► ровно по ширине контейнера */
+    box-sizing:border-box;   /* учитываем padding в общей ширине */
+    margin:24px 0 0;         /* сверху отступ, снизу не нужен */
+    padding:14px 0;          /* высота ~46 px */
+    font-size:16px;
+    font-weight:700;
+    color:#fff;
+    background:#ff6b6b;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    transition:background .2s,transform .1s;
+  }
+  
+  /* — взаимодействие — */
+  .controls-reset:hover  { background:#e55252; }
+  .controls-reset:active { transform:scale(.97); }
+  
+  .mod-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+  }
+  .mod-table th, .mod-table td {
+    border: 1px solid #444;
+    padding: 8px 12px;
+    text-align: left;
+    background: #1a1a1a;
+    color: #ccc;
+  }
+  .mod-table th {
+    background: #222;
+    color: #00e7f8;
+    text-transform: uppercase;
+  }
+  

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ────────── СТИЛИ ────────── -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/typography.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/themes.css" />
+  <link rel="stylesheet" href="css/examples.css" />
+  <link rel="stylesheet" href="css/tab-game.css" />
+  <link rel="stylesheet" href="css/tab-leaderboard.css" />
+  <link rel="stylesheet" href="css/tab-controls.css" />
+  <link rel="stylesheet" href="css/tab-modifiers.css" />
+
+  <!-- ────────── LIBS ─────────── -->
+  <script src="/socket.io/socket.io.js"></script> <!-- socket-клиент -->
+
+  <!-- ────────── CORE ─────────── -->
+  <script src="js/main.js" defer></script>
+
+  <!-- ──────── LOADOUT ────────── -->
+  <script src="js/loadout/data.js" defer></script>
+  <script src="js/loadout/table.js" defer></script>
+  <script src="js/loadout/modal.js" defer></script>
+  <script src="js/loadout/score.js" defer></script>
+  <script src="js/loadout/index.js" defer></script>
+
+  <!-- ─────── LEADERBOARD ─────── -->
+  <script src="js/leaderboard/render.js" defer></script>
+  <script src="js/leaderboard/score-edit.js" defer></script>
+  <script src="js/leaderboard/team.js" defer></script>
+  <script src="js/leaderboard/index.js" defer></script>
+  <script src="js/leaderboard/penalty-edit.js" defer></script>
+
+  <!-- ───────── CONTROLS ──────── -->
+  <script src="js/controls/index.js" defer></script>
+
+  <!-- ──────── MODIFIERS ──────── -->
+  <script src="js/modifiers/index.js" defer></script>
+</head>
+
+<body>
+  <!-- ╔═════════════ HEADER ═════════════╗ -->
+  <div class="tabs">
+    <button class="tab-button tab-button--active" data-tab="game">🎯 Игра</button>
+    <button class="tab-button" data-tab="modifiers">🧪 Модификаторы</button>
+    <button class="tab-button" data-tab="leaderboard">🏆 Лидерборд</button>
+    <button class="tab-button" data-tab="controls">⚙️ Управление</button>
+  </div>
+  <h1 class="main-title">Набор мертвеца</h1>
+  
+  <!-- 🎨 Переключатель тем -->
+  <div style="text-align: center; margin-bottom: 20px;">
+    <label for="theme-selector" style="color: var(--color-text-accent); margin-right: 10px;">Тема:</label>
+    <select id="theme-selector" style="background: var(--color-bg-tertiary); color: var(--color-text-primary); border: 1px solid var(--color-border-secondary); padding: 5px; border-radius: 4px;">
+      <option value="theme-dark">🌙 Темная</option>
+      <option value="theme-light">☀️ Светлая</option>
+      <option value="theme-gaming">🎮 Геймерская</option>
+      <option value="theme-ocean">🌊 Океанская</option>
+      <option value="theme-fire">🔥 Огненная</option>
+      <option value="theme-pink">🌸 Розовая</option>
+      <option value="theme-nature">🍃 Природная</option>
+      <option value="theme-neon">🎨 Неоновая</option>
+    </select>
+  </div>
+  <!-- ╚══════════════════════════════════╝ -->
+
+  <div class="container">
+    <!-- ▸ ИГРА ------------------------------------------------ -->
+    <section class="tab-content tab-content--active" id="game">
+      <div id="active-team-display" class="active-team-display">Нет активной команды</div>
+      <div id="loadout-area"></div>
+    </section>
+
+    <!-- ▸ МОДИФИКАТОРЫ --------------------------------------- -->
+    <section class="tab-content" id="modifiers">
+      <div class="modifiers-columns">
+        <!--  LEFT  -->
+        <div class="modifiers-section modifiers-left stack">
+          <h2 class="section-title">Применённые модификаторы</h2>
+          <div id="applied-modifiers-table"></div>
+
+          <button id="start-game-btn" class="btn btn--secondary btn--full-width">🚀 Начать игру</button>
+
+          <h2 class="section-title">Активные модификаторы</h2>
+          <div id="active-modifiers-table"></div>
+        </div>
+
+        <!--  RIGHT  -->
+        <div class="modifiers-section modifiers-right">
+          <h2 class="section-title">Список участников</h2>
+          <div id="mod-points-table"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ▸ ЛИДЕРБОРД ------------------------------------------ -->
+    <section class="tab-content" id="leaderboard">
+      <div id="leaderboard-area"></div>
+
+      <!-- кнопки под таблицей -->
+      <div class="leaderboard-toolbar">
+        <button id="choose-active-team-button" class="btn btn--primary">🎯 Выбрать активную команду</button>
+        <button id="add-team-button" class="btn btn--primary">➕ Добавить команду</button>
+        <button id="add-game-button" class="btn btn--secondary">➕ Добавить игру</button>
+        <button id="remove-team-button" class="btn btn--danger">➖ Удалить команду</button>
+      </div>
+
+      <!-- 🟦 ДОБАВИТЬ КОМАНДУ -->
+      <div id="leaderboard-modal" class="modal">
+        <div class="modal__content">
+          <div class="modal__header">
+            <h2 class="modal__title">Новая команда</h2>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="player1">Игрок 1</label>
+            <input id="player1" class="form-input" type="text" placeholder="Игрок 1" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="player2">Игрок 2</label>
+            <input id="player2" class="form-input" type="text" placeholder="Игрок 2" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="player3">Игрок 3</label>
+            <input id="player3" class="form-input" type="text" placeholder="Игрок 3" />
+          </div>
+          <div class="modal__actions">
+            <button id="save-team" class="btn btn--primary">Сохранить</button>
+            <button id="cancel-team" class="btn btn--ghost">Отмена</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🟥 УДАЛИТЬ КОМАНДУ -->
+      <div id="remove-team-modal" class="modal">
+        <div class="modal__content">
+          <div class="modal__header">
+            <h2 class="modal__title">Удалить команду</h2>
+          </div>
+          <div class="form-group">
+            <select id="team-select" class="form-select"></select>
+          </div>
+          <div class="modal__actions">
+            <button id="confirm-remove" class="btn btn--danger">Удалить</button>
+            <button id="cancel-remove" class="btn btn--ghost">Отмена</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🟧 РЕДАКТИРОВАНИЕ ОЧКОВ -->
+      <div id="edit-score-modal" class="modal">
+        <div class="modal__content">
+          <div class="modal__header">
+            <h2 class="modal__title">Редактирование очков</h2>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="score-input">Новое значение</label>
+            <input id="score-input" class="form-input" type="number" placeholder="Введите новое значение..." />
+          </div>
+          <div class="modal__actions">
+            <button id="save-edit-score" class="btn btn--primary">Сохранить</button>
+            <button id="cancel-edit-score" class="btn btn--ghost">Отмена</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🟨 РЕДАКТИРОВАНИЕ ШТРАФА -->
+      <div id="edit-penalty-modal" class="modal">
+        <div class="modal__content">
+          <div class="modal__header">
+            <h2 class="modal__title">Редактирование штрафа</h2>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="penalty-input">Сумма штрафа</label>
+            <input id="penalty-input" class="form-input" type="number" placeholder="Введите сумму штрафа..." />
+          </div>
+          <div class="modal__actions">
+            <button id="save-edit-penalty" class="btn btn--primary">Сохранить</button>
+            <button id="cancel-edit-penalty" class="btn btn--ghost">Отмена</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🟪 ВЫБРАТЬ АКТИВНУЮ -->
+      <div id="choose-active-team-modal" class="modal">
+        <div class="modal__content">
+          <div class="modal__header">
+            <h3 class="modal__title">Выбрать активную команду</h3>
+          </div>
+          <div class="form-group">
+            <select id="choose-active-team-select" class="form-select"></select>
+          </div>
+          <div class="modal__actions">
+            <button id="confirm-active-team" class="btn btn--primary">Выбрать</button>
+            <button id="cancel-active-team" class="btn btn--ghost">Отмена</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ▸ УПРАВЛЕНИЕ ---------------------------------------- -->
+    <section class="tab-content" id="controls">
+      <div id="controls-area"></div>
+      <button id="reset-storage-btn" class="btn btn--danger btn--full-width">♻️ Сбросить всё</button>
+      <button id="reset-scores-btn" class="btn btn--danger btn--full-width">🗑️ Сбросить счёт</button>
+    </section>
+  </div>
+
+  <!-- ▸ Модалка полноразмерного изображения  -->
+  <div id="modal" class="modal">
+    <img id="modal-image" src="" alt="fullscreen" />
+  </div>
+
+  <!-- ▸ Модалка расчёта очков лодаута -->
+  <div id="loadout-score-modal" class="modal">
+    <div class="modal__content">
+      <div class="modal__header">
+        <h2 class="modal__title">Расчёт очков</h2>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label" for="kills">Убийства</label>
+        <input id="kills" name="kills" class="form-input" type="number" min="0" value="0" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="bonus">Бонус за убийство</label>
+        <input id="bonus" name="bonus" class="form-input" type="number" min="0" value="0" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="rewards">Награды</label>
+        <select id="rewards" name="rewards" class="form-select">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="penalty">Дополнительный штраф</label>
+        <input id="penalty" name="penalty" class="form-input" type="number" min="0" value="0" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="multiplier">Множитель</label>
+        <input id="multiplier" name="multiplier" class="form-input" type="number" step="0.1" value="1" />
+      </div>
+
+      <div class="modal__actions">
+        <button type="submit" class="btn btn--primary">ОК</button>
+        <button type="button" id="loadout-cancel-score" class="btn btn--ghost">Отмена</button>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
