@@ -22,18 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // переключатель тем
-  const themeSelector = document.getElementById('theme-selector');
-  if (themeSelector) {
-    // Загружаем сохраненную тему
-    const savedTheme = localStorage.getItem('selectedTheme') || 'theme-dark';
-    document.body.className = savedTheme;
-    themeSelector.value = savedTheme;
-
-    // Сохраняем выбранную тему
-    themeSelector.addEventListener('change', (e) => {
-      document.body.className = e.target.value;
-      localStorage.setItem('selectedTheme', e.target.value);
-    });
-  }
+  // Устанавливаем неоновую тему по умолчанию
+  document.body.className = 'theme-neon';
 });

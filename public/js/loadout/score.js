@@ -14,6 +14,14 @@
  *      +result  либо  –penalty
  */
 
+// Скрываем модалку при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('loadout-score-modal');
+  if (modal) {
+    modal.classList.add('loadout-score-hidden');
+  }
+});
+
 window.openScoreModal = function (td, rowIdx, colIdx, costLabel) {
   const modal = document.getElementById('loadout-score-modal');
   modal.classList.remove('loadout-score-hidden');
