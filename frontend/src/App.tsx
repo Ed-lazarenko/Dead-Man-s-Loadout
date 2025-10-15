@@ -1,34 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react'
+import Layout from './components/Layout'
+import TabSystem from './components/TabSystem'
+import GamePage from './pages/GamePage'
+import LeaderboardPage from './pages/LeaderboardPage'
+import ModifiersPage from './pages/ModifiersPage'
+import ControlsPage from './pages/ControlsPage'
+
+type TabId = 'game' | 'leaderboard' | 'modifiers' | 'controls'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [activeTab, setActiveTab] = useState<TabId>('game')
+
+  const renderPage = () => {
+    switch (activeTab) {
+      case 'game':
+        return <GamePage />
+      case 'leaderboard':
+        return <LeaderboardPage />
+      case 'modifiers':
+        return <ModifiersPage />
+      case 'controls':
+        return <ControlsPage />
+      default:
+        return <GamePage />
+    }
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Layout>
+      <TabSystem activeTab={activeTab} onTabChange={setActiveTab} />
+      {renderPage()}
+    </Layout>
   )
 }
 
