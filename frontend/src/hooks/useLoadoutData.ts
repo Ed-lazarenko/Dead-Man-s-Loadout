@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import type { LoadoutData, LoadoutCellState, PlayedCellData } from '../types'
 import { LOADOUT_CONFIG } from '../constants'
+import { debugLog } from '../utils'
 import { 
   getPlayedCellData, 
   savePlayedCellData, 
@@ -48,11 +49,11 @@ export function useLoadoutData() {
     }
     
     setData(loadedData)
-    console.log('Loaded played cells from localStorage')
+    debugLog('Loaded played cells from localStorage')
   }, [])
 
   const updateCellState = useCallback((rowIdx: number, colIdx: number, state: LoadoutCellState) => {
-    console.log(`Updating cell [${rowIdx}, ${colIdx}] to state: ${state}`)
+    debugLog(`Updating cell [${rowIdx}, ${colIdx}] to state: ${state}`)
     setData(prev => ({
       ...prev,
       cells: prev.cells.map((row, rIdx) =>
@@ -84,7 +85,7 @@ export function useLoadoutData() {
       marked: prev.marked.filter(([r, c]) => !isCellMarked(rowIdx, colIdx, [[r, c]]))
     }))
     
-    console.log(`Saved played cell [${rowIdx}, ${colIdx}] to localStorage`)
+    debugLog(`Saved played cell [${rowIdx}, ${colIdx}] to localStorage`)
   }, [])
 
   const getPlayedCount = useCallback(() => {
@@ -94,7 +95,7 @@ export function useLoadoutData() {
   const resetData = useCallback(() => {
     clearAllPlayedCells()
     setData(createInitialLoadoutData())
-    console.log('Reset all loadout data and cleared localStorage')
+    debugLog('Reset all loadout data and cleared localStorage')
   }, [])
 
   return {

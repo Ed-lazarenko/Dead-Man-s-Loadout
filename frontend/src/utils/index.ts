@@ -1,7 +1,7 @@
 // Утилиты для работы с данными и localStorage
 
 import { STORAGE_KEYS, DEFAULT_TEAM, LOADOUT_CONFIG } from '../constants'
-import type { LoadoutCellState, LoadoutCell } from '../types'
+import type { LoadoutCellState, LoadoutCell, PlayedCellData } from '../types'
 
 /**
  * Безопасное получение данных из localStorage
@@ -55,7 +55,7 @@ export function saveActiveTeam(team: string[]): void {
 /**
  * Получение данных отыгранной ячейки
  */
-export function getPlayedCellData(rowIdx: number, colIdx: number): any {
+export function getPlayedCellData(rowIdx: number, colIdx: number): PlayedCellData | null {
   const key = STORAGE_KEYS.PLAYED_CELL(rowIdx, colIdx)
   return getFromStorage(key, null)
 }
@@ -63,7 +63,7 @@ export function getPlayedCellData(rowIdx: number, colIdx: number): any {
 /**
  * Сохранение данных отыгранной ячейки
  */
-export function savePlayedCellData(rowIdx: number, colIdx: number, data: any): void {
+export function savePlayedCellData(rowIdx: number, colIdx: number, data: PlayedCellData): void {
   const key = STORAGE_KEYS.PLAYED_CELL(rowIdx, colIdx)
   saveToStorage(key, data)
 }
@@ -164,4 +164,14 @@ export function formatNumber(num: number): number {
 export function getPlayerColor(index: number): string {
   const colors = ['text-yellow-400', 'text-green-400', 'text-pink-400']
   return colors[index % colors.length]
+}
+
+/**
+ * Легковесный логгер для отладки, чтобы централизованно управлять логами
+ */
+export function debugLog(...args: unknown[]): void {
+  if (import.meta && import.meta.env && import.meta.env.DEV) {
+    // eslint-disable-next-line no-console
+    console.log('[DML]', ...args)
+  }
 }
