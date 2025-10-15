@@ -1,73 +1,87 @@
-# React + TypeScript + Vite
+# Dead Man's Loadout - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Интерактивное стриминговое приложение для игры Hunt: Showdown.
 
-Currently, two official plugins are available:
+## 🚀 Технологический стек
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 18** + **TypeScript** + **Vite**
+- **Tailwind CSS** - стилизация
+- **Headless UI** - доступные компоненты
+- **React Hook Form** - формы
+- **React Query/TanStack Query** - управление состоянием сервера
+- **Framer Motion** - анимации
+- **React Hot Toast** - уведомления
+- **Zod** - валидация схем
 
-## React Compiler
+## 🎮 Функциональность
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### ✅ Реализовано
+- **Система лодаутов** - сетка 5×6 с изображениями снаряжения
+- **Состояния ячеек** - закрытая → открытая → отыгранная
+- **Пометки ★** - для особых карточек
+- **Модальные окна** - полноэкранное изображение и расчет очков
+- **LocalStorage** - персистентность данных
+- **Адаптивный дизайн** - работает на всех устройствах
 
-## Expanding the ESLint configuration
+### 🔄 В разработке
+- **Лидерборд** - таблица команд с очками и штрафами
+- **Модификаторы** - система правил и ограничений
+- **Управление** - сервисные функции
+- **Socket.IO интеграция** - real-time обновления
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Разработка
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Установка зависимостей
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Запуск в режиме разработки
+```bash
+npm run dev
 ```
+
+### Сборка для продакшена
+```bash
+npm run build
+```
+
+### Линтинг
+```bash
+npm run lint
+```
+
+## 📁 Структура проекта
+
+```
+src/
+├── components/          # React компоненты
+│   ├── Button.tsx      # Переиспользуемые кнопки
+│   ├── Layout.tsx      # Основной макет
+│   ├── LoadoutGrid.tsx # Сетка лодаутов
+│   ├── Modal.tsx       # Модальные окна
+│   └── TabSystem.tsx   # Система вкладок
+├── hooks/              # Custom hooks
+│   └── useLoadoutData.ts # Управление данными лодаутов
+├── pages/              # Страницы приложения
+│   ├── ControlsPage.tsx
+│   ├── GamePage.tsx
+│   ├── LeaderboardPage.tsx
+│   └── ModifiersPage.tsx
+├── App.tsx             # Главный компонент
+├── main.tsx            # Точка входа
+└── index.css           # Глобальные стили
+```
+
+## 🎯 Миграция
+
+Этот проект является миграцией с Vanilla JS на современный React стек. Исходный код находится в папке `../OldCode/`.
+
+### Этапы миграции:
+1. ✅ **Этап 1.1-1.2** - Создание React проекта и базовых компонентов
+2. ✅ **Этап 1.3** - Система лодаутов полностью мигрирована
+3. 🔄 **Этап 1.4-1.7** - Остальные компоненты (лидерборд, модификаторы, управление)
+
+## 📝 Лицензия
+
+Built with ❤️ for Hunt: Showdown community

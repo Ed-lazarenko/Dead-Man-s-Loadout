@@ -1,6 +1,8 @@
+import PageLayout from '../components/PageLayout'
+
 export default function LeaderboardPage() {
   return (
-    <div className="space-y-6">
+    <PageLayout>
       <div className="bg-gray-800 rounded-lg p-6">
         <h2 className="text-xl font-semibold text-white mb-4">🏆 Лидерборд</h2>
         <p className="text-gray-300">
@@ -12,6 +14,6 @@ export default function LeaderboardPage() {
           </p>
         </div>
       </div>
-    </div>
+    </PageLayout>
   )
 }

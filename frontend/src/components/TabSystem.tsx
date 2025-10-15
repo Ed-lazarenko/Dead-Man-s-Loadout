@@ -1,6 +1,4 @@
-import React from 'react'
-
-type TabId = 'game' | 'leaderboard' | 'modifiers' | 'controls'
+import type { TabId } from '../types'
 
 interface Tab {
   id: TabId
@@ -22,18 +20,18 @@ const tabs: Tab[] = [
 
 export default function TabSystem({ activeTab, onTabChange }: TabSystemProps) {
   return (
-    <div className="bg-gray-800 rounded-lg p-1 mb-6">
+    <div className="bg-gray-700 rounded-lg p-1">
       <nav className="flex space-x-1">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => onTabChange(tab.id)}
             className={`
-              flex-1 flex items-center justify-center px-4 py-3 rounded-md text-sm font-medium transition-colors
+              flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium transition-colors
               ${
                 activeTab === tab.id
-                  ? 'bg-green-600 text-white'
-                  : 'text-gray-400 hover:text-white hover:bg-gray-700'
+                  ? 'bg-primary text-black'
+                  : 'text-gray-400 hover:text-white hover:bg-gray-600'
               }
             `}
           >

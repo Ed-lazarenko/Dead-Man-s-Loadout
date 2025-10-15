@@ -1,12 +1,11 @@
-import React from 'react'
+import type { ModalProps } from '../types'
 
-interface ModalProps {
-  isOpen: boolean
-  onClose: () => void
-  title: string
-  children: React.ReactNode
-  size?: 'sm' | 'md' | 'lg' | 'xl'
-}
+const sizeClasses = {
+  sm: 'max-w-md',
+  md: 'max-w-lg',
+  lg: 'max-w-2xl',
+  xl: 'max-w-4xl',
+} as const
 
 export default function Modal({
   isOpen,
@@ -16,13 +15,6 @@ export default function Modal({
   size = 'md',
 }: ModalProps) {
   if (!isOpen) return null
-
-  const sizeClasses = {
-    sm: 'max-w-md',
-    md: 'max-w-lg',
-    lg: 'max-w-2xl',
-    xl: 'max-w-4xl',
-  }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -43,6 +35,7 @@ export default function Modal({
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-white transition-colors"
+            aria-label="Закрыть"
           >
             ✕
           </button>

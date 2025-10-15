@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Layout from './components/Layout'
-import TabSystem from './components/TabSystem'
 import GamePage from './pages/GamePage'
 import LeaderboardPage from './pages/LeaderboardPage'
 import ModifiersPage from './pages/ModifiersPage'
 import ControlsPage from './pages/ControlsPage'
-
-type TabId = 'game' | 'leaderboard' | 'modifiers' | 'controls'
+import type { TabId } from './types'
 
 function App() {
   const [activeTab, setActiveTab] = useState<TabId>('game')
@@ -27,8 +25,7 @@ function App() {
   }
 
   return (
-    <Layout>
-      <TabSystem activeTab={activeTab} onTabChange={setActiveTab} />
+    <Layout activeTab={activeTab} onTabChange={setActiveTab}>
       {renderPage()}
     </Layout>
   )
