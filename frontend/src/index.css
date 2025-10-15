@@ -1,47 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Creepster&family=Nosifer&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  /* CSS Variables for dynamic theming - "Набор мертвеца" */
+  --color-primary: #D2691E; /* Ржавый оранжевый */
+  --color-secondary: #8FBC8F; /* Тусклый зеленый */
+  --color-accent: #DC143C; /* Кроваво-красный */
+  --color-danger: #8B0000; /* Темно-красный (кровь) */
+  --color-warning: #DAA520; /* Золотистый (старое золото) */
+  --color-success: #228B22; /* Лесной зеленый */
+  
+  /* Dark theme colors - земляные тона */
+  --bg-primary: #231d18;
+  --bg-secondary: #463f35;
+  --bg-tertiary: #696152;
+  --text-primary: #f7f6f4;
+  --text-secondary: #dfdbd1;
+  --text-muted: #8c836f;
+  
+  /* Shadows and effects - тематические */
+  --shadow-glow: 0 0 20px rgba(210, 105, 30, 0.5);
+  --shadow-rust: 0 0 15px rgba(183, 65, 14, 0.4);
+  --shadow-blood: 0 0 15px rgba(220, 20, 60, 0.4);
+  --shadow-bone: 0 0 10px rgba(245, 245, 220, 0.3);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
-a:hover {
-  color: #535bf2;
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, #0f0d0a 100%);
+  color: var(--text-primary);
+  overflow-x: hidden;
 }
 
 #root {
   width: 100%;
   height: 100vh;
+  position: relative;
+}
+
+/* Atmospheric background effects - "Набор мертвеца" */
+#root::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    /* Rust grid pattern */
+    linear-gradient(rgba(183, 65, 14, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(183, 65, 14, 0.05) 1px, transparent 1px),
+    /* Bone pattern */
+    radial-gradient(circle at 25% 25%, rgba(245, 245, 220, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(245, 245, 220, 0.03) 0%, transparent 50%),
+    /* Blood splatter */
+    radial-gradient(circle at 20% 80%, rgba(220, 20, 60, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(220, 20, 60, 0.02) 0%, transparent 50%);
+  background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px, 150px 150px, 150px 150px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Selection styles */
+::selection {
+  background: rgba(0, 231, 248, 0.3);
+  color: var(--text-primary);
+}
+
+::-moz-selection {
+  background: rgba(0, 231, 248, 0.3);
+  color: var(--text-primary);
+}
+
+/* Typography improvements - "Набор мертвеца" */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 10px rgba(210, 105, 30, 0.3));
 }
 
+/* Creepy text effects */
+.creepy-text {
+  font-family: 'Creepster', cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  color: var(--color-accent);
+}
+
+.bone-text {
+  color: var(--bone);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.rust-text {
+  color: var(--color-primary);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* Button base styles */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -49,28 +153,193 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
-  color: white;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 231, 248, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+button:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Link styles */
+a {
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.25s ease;
+  position: relative;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width 0.25s ease;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+/* Input styles */
+input, textarea, select {
+  background: var(--bg-secondary);
+  border: 1px solid var(--bg-tertiary);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-family: inherit;
+  transition: all 0.25s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Card styles - "Набор мертвеца" */
+.card {
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+  border: 2px solid var(--rust);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-rust);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), var(--color-accent), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(245, 245, 220, 0.05) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+.card:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-4px);
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 231, 248, 0.2);
+}
+
+/* Neon glow effect */
+.neon-glow {
+  box-shadow: var(--shadow-neon);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* Loading animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
   }
-  a:hover {
-    color: #747bff;
+  100% {
+    background-position: calc(200px + 100%) 0;
   }
+}
+
+.loading-shimmer {
+  background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--bg-tertiary) 50%, var(--bg-secondary) 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Responsive design helpers */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5em;
+  }
+  
   button {
-    background-color: #f9f9f9;
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+  }
+  
+  .card {
+    padding: 1rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  * {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .no-print {
+    display: none !important;
   }
 }

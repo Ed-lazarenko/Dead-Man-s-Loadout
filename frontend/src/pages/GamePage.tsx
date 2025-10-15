@@ -23,17 +23,17 @@ export default function GamePage() {
       <div className="w-full max-w-6xl">
         {/* Отображение активной команды */}
         <div className="mb-6">
-          <div className="bg-gray-800 rounded-lg p-4 border border-gray-600">
+          <div className="bg-dark-800 rounded-lg p-4 border border-primary-500/30">
             <div className="flex items-center justify-center gap-2">
-              <span className="text-cyan-400 font-semibold">Активная команда:</span>
+              <span className="text-primary-400 font-semibold">Активная команда:</span>
               <div className="flex items-center gap-2">
                 {activeTeam.map((player, index) => (
                   <span 
                     key={index}
                     className={`font-bold ${
-                      index === 0 ? 'text-yellow-400' :
-                      index === 1 ? 'text-green-400' : 
-                      'text-pink-400'
+                      index === 0 ? 'text-warning' :
+                      index === 1 ? 'text-success' : 
+                      'text-accent'
                     }`}
                   >
                     {player}

@@ -37,10 +37,10 @@ export const SCORE_CONFIG = {
 
 export const UI_CONFIG = {
   GRID_CELL_SIZE: {
-    HEADER_WIDTH: 80,
-    HEADER_HEIGHT: 80,
-    CELL_WIDTH: 144,
-    CELL_HEIGHT: 144
+    HEADER_WIDTH: 100,
+    HEADER_HEIGHT: 100,
+    CELL_WIDTH: 180,
+    CELL_HEIGHT: 200  // Увеличиваем высоту для прямоугольных изображений
   },
   MODAL_SIZES: {
     SM: 'sm',

@@ -85,24 +85,36 @@ export default function LoadoutGrid({ className = '' }: LoadoutGridProps) {
 
   return (
     <div className={`w-full h-full flex items-center justify-center ${className}`}>
-      {/* Таблица лодаутов - CSS Grid с фиксированными размерами */}
-      <div className="bg-gray-800 rounded-lg p-4">
-        <div 
-          className="grid gap-2"
-          style={{
-            gridTemplateColumns: `${UI_CONFIG.GRID_CELL_SIZE.HEADER_WIDTH}px repeat(6, ${UI_CONFIG.GRID_CELL_SIZE.CELL_WIDTH}px)`,
-            gridTemplateRows: `${UI_CONFIG.GRID_CELL_SIZE.HEADER_HEIGHT}px repeat(5, ${UI_CONFIG.GRID_CELL_SIZE.CELL_HEIGHT}px)`
-          }}
-        >
+      {/* Main grid container with enhanced styling */}
+      <div className="relative">
+        {/* Background glow effect */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-transparent to-secondary-500/10 rounded-3xl blur-2xl"></div>
+        
+        {/* Grid container */}
+        <div className="relative bg-dark-800/60 backdrop-blur-md rounded-3xl p-6 border border-primary-500/30 shadow-glow">
+          {/* Decorative elements */}
+          <div className="absolute top-6 left-6 w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
+          <div className="absolute top-6 right-6 w-1.5 h-1.5 bg-secondary-500 rounded-full animate-pulse"></div>
+          <div className="absolute bottom-6 left-6 w-1 h-1 bg-accent rounded-full animate-pulse"></div>
+          <div className="absolute bottom-6 right-6 w-2 h-2 bg-primary-400 rounded-full animate-pulse"></div>
+          
+          {/* Grid - увеличенные размеры для лучшего отображения */}
+          <div 
+            className="grid gap-4"
+            style={{
+              gridTemplateColumns: `${UI_CONFIG.GRID_CELL_SIZE.HEADER_WIDTH}px repeat(6, ${UI_CONFIG.GRID_CELL_SIZE.CELL_WIDTH}px)`,
+              gridTemplateRows: `${UI_CONFIG.GRID_CELL_SIZE.HEADER_HEIGHT}px repeat(5, ${UI_CONFIG.GRID_CELL_SIZE.CELL_HEIGHT}px)`
+            }}
+          >
           {/* Заголовок */}
-          <div className="bg-gray-700 text-white text-center font-bold border-2 border-gray-600 flex items-center justify-center">
-            💀
+          <div className="bg-gradient-to-br from-dark-700 to-dark-800 text-white text-center font-bold border-2 border-primary-500/50 rounded-xl flex items-center justify-center shadow-glow">
+            <span className="text-2xl animate-pulse">💀</span>
           </div>
           
           {/* Колонки */}
           {data.columns.map((column, idx) => (
-            <div key={idx} className="bg-gray-700 text-white text-center font-bold text-lg border-2 border-gray-600 flex items-center justify-center">
-              {column}
+            <div key={idx} className="bg-gradient-to-br from-dark-700 to-dark-800 text-white text-center font-bold text-lg border-2 border-primary-500/50 rounded-xl flex items-center justify-center shadow-glow">
+              <span className="text-primary-300 font-cinzel tracking-wide">{column}</span>
             </div>
           ))}
 
@@ -113,8 +125,8 @@ export default function LoadoutGrid({ className = '' }: LoadoutGridProps) {
             
             return [
               // Заголовок строки
-              <div key={`row-${rowIdx}`} className="bg-gray-700 text-white text-center font-semibold text-sm border-2 border-gray-600 flex items-center justify-center">
-                {rowLabel}
+              <div key={`row-${rowIdx}`} className="bg-gradient-to-br from-dark-700 to-dark-800 text-white text-center font-semibold text-sm border-2 border-primary-500/50 rounded-xl flex items-center justify-center shadow-glow">
+                <span className="text-secondary-300 font-cinzel">{rowLabel}</span>
               </div>,
               // Ячейки строки
               ...row.map((cell, colIdx) => {
@@ -124,13 +136,22 @@ export default function LoadoutGrid({ className = '' }: LoadoutGridProps) {
                   <div
                     key={`cell-${rowIdx}-${colIdx}`}
                     className={`
-                      relative border-2 border-gray-600 cursor-pointer transition-colors
-                      ${cell.state === 'closed' ? 'bg-gray-900' : ''}
-                      ${cell.state === 'opened' ? 'bg-gray-700' : ''}
-                      ${cell.state === 'played' ? 'bg-gray-600' : ''}
-                      hover:bg-gray-600
+                      relative border-2 cursor-pointer transition-all duration-300 ease-out
+                      group overflow-hidden rounded-xl
+                      ${cell.state === 'closed' 
+                        ? 'bg-gradient-to-br from-dark-900 to-dark-800 border-primary-500/30 hover:border-primary-500/60 hover:shadow-glow' 
+                        : ''
+                      }
+                      ${cell.state === 'opened' 
+                        ? 'bg-gradient-to-br from-dark-700 to-dark-600 border-primary-500/50 hover:border-primary-500/80 hover:shadow-glow hover:scale-105' 
+                        : ''
+                      }
+                      ${cell.state === 'played' 
+                        ? 'bg-gradient-to-br from-dark-600 to-dark-500 border-secondary-500/50 shadow-glow' 
+                        : ''
+                      }
+                      hover:transform hover:scale-105
                       flex items-center justify-center
-                      overflow-hidden
                     `}
                     onClick={() => handleCellClick(cell, rowIdx, colIdx)}
                     onContextMenu={(e) => {
@@ -138,12 +159,15 @@ export default function LoadoutGrid({ className = '' }: LoadoutGridProps) {
                       handleCellRightClick(cell, rowIdx, colIdx, cost)
                     }}
                   >
-                    {/* Изображение */}
+                    {/* Hover effect overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                    
+                    {/* Изображение - оптимизировано для прямоугольных картинок */}
                     {cell.state !== 'closed' && (
                       <img
                         src={cell.image}
                         alt=""
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-cover relative z-10 transition-transform duration-300 group-hover:scale-105"
                         onError={(e) => {
                           console.error('Failed to load image:', cell.image)
                           e.currentTarget.style.display = 'none'
@@ -153,30 +177,42 @@ export default function LoadoutGrid({ className = '' }: LoadoutGridProps) {
                     
                     {/* Закрытая карточка */}
                     {cell.state === 'closed' && (
-                      <div className="w-full h-full bg-gray-600 flex items-center justify-center">
-                        <span className="text-gray-400 text-4xl">?</span>
+                      <div className="w-full h-full bg-gradient-to-br from-dark-800 to-dark-900 flex items-center justify-center relative z-10">
+                        <div className="relative">
+                          <span className="text-primary-400 text-4xl font-bold animate-pulse">?</span>
+                          <div className="absolute inset-0 bg-primary-500/20 rounded-full blur-lg animate-pulse"></div>
+                        </div>
                       </div>
                     )}
 
                     {/* Пометка ★ */}
                     {isMarked && cell.state !== 'played' && (
-                      <div className="absolute top-1 right-1 text-yellow-400 text-lg font-bold z-10">
-                        ★
+                      <div className="absolute top-2 right-2 text-warning text-xl font-bold z-20 animate-bounce-slow">
+                        <div className="relative">
+                          <span className="drop-shadow-lg">★</span>
+                          <div className="absolute inset-0 bg-warning/30 rounded-full blur-sm animate-pulse"></div>
+                        </div>
                       </div>
                     )}
 
                     {/* Overlay для отыгранных */}
                     {cell.state === 'played' && cell.playedData && (
-                      <div className="absolute inset-0 bg-black bg-opacity-75 flex flex-col items-center justify-center text-white text-xs">
-                        <div className={`font-bold ${
-                          cell.playedData.penalty > 0 ? 'text-red-400' : 'text-green-400'
-                        }`}>
-                          {cell.playedData.penalty > 0 
-                            ? `−${cell.playedData.penalty}` 
-                            : `+${cell.playedData.result}`
-                          }
+                      <div className="absolute inset-0 bg-gradient-to-br from-dark-900/90 to-dark-800/90 backdrop-blur-sm flex flex-col items-center justify-center text-white text-xs rounded-xl z-20">
+                        <div className="relative">
+                          <div className={`font-bold text-lg ${
+                            cell.playedData.penalty > 0 ? 'text-danger' : 'text-success'
+                          }`}>
+                            {cell.playedData.penalty > 0 
+                              ? `−${cell.playedData.penalty}` 
+                              : `+${cell.playedData.result}`
+                            }
+                          </div>
+                          <div className="text-xs text-gray-300 mt-1 font-medium">Отыграно</div>
+                          {/* Glow effect for played cards */}
+                          <div className={`absolute inset-0 rounded-full blur-sm ${
+                            cell.playedData.penalty > 0 ? 'bg-danger/30' : 'bg-success/30'
+                          } animate-pulse`}></div>
                         </div>
-                        <div className="text-xs">Отыграно</div>
                       </div>
                     )}
                   </div>
@@ -185,6 +221,7 @@ export default function LoadoutGrid({ className = '' }: LoadoutGridProps) {
             ]
           }).flat()}
         </div>
+        
       </div>
 
       {/* Модалка полноэкранного изображения */}
@@ -221,6 +258,7 @@ export default function LoadoutGrid({ className = '' }: LoadoutGridProps) {
           cost: scoreModal.cost
         }}
       />
+    </div>
     </div>
   )
 }

@@ -105,147 +105,220 @@ export default function ScoreModal({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title={`Ячейка ${rowIndex + 1}-${colIndex + 1}`}
+      title={`Расчет очков - Ячейка ${rowIndex + 1}-${colIndex + 1}`}
       size="lg"
     >
-      <div className="space-y-6">
+      <div className="space-y-8">
         {/* Информация о ячейке */}
-        <div className="bg-gray-700 rounded-lg p-4">
-          <div className="grid grid-cols-2 gap-4 text-sm">
-            <div>
-              <span className="text-gray-400">Строка:</span>
-              <span className="text-white ml-2">{rowIndex + 1}</span>
+        <div className="bg-gradient-to-br from-dark-700/80 to-dark-800/80 backdrop-blur-sm rounded-2xl p-6 border border-primary-500/30 shadow-glow">
+          <div className="flex items-center space-x-3 mb-4">
+            <div className="w-3 h-3 bg-primary-500 rounded-full animate-pulse"></div>
+            <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent font-cinzel">
+              Информация о карточке
+            </h3>
+          </div>
+          <div className="grid grid-cols-2 gap-6 text-sm">
+            <div className="flex items-center justify-between">
+              <span className="text-gray-400 font-medium">Строка:</span>
+              <span className="text-primary-300 font-bold">{rowIndex + 1}</span>
             </div>
-            <div>
-              <span className="text-gray-400">Колонка:</span>
-              <span className="text-white ml-2">{colIndex + 1}</span>
+            <div className="flex items-center justify-between">
+              <span className="text-gray-400 font-medium">Колонка:</span>
+              <span className="text-primary-300 font-bold">{colIndex + 1}</span>
             </div>
-            <div>
-              <span className="text-gray-400">Стоимость:</span>
-              <span className="text-primary ml-2">${currentCost}</span>
+            <div className="flex items-center justify-between">
+              <span className="text-gray-400 font-medium">Стоимость:</span>
+              <span className="text-secondary-300 font-bold">${currentCost}</span>
             </div>
-            <div>
-              <span className="text-gray-400">Множитель:</span>
-              <span className="text-accent ml-2">{formData.multiplier}x</span>
+            <div className="flex items-center justify-between">
+              <span className="text-gray-400 font-medium">Множитель:</span>
+              <span className="text-accent font-bold">{formData.multiplier}x</span>
             </div>
           </div>
         </div>
 
         {/* Форма расчета */}
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Убийства
-            </label>
-            <input
-              type="number"
-              min="0"
-              value={formData.kills}
-              onChange={(e) => handleInputChange('kills', e.target.value)}
-              className={`w-full px-3 py-2 bg-gray-700 border rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary ${
-                errors.kills ? 'border-danger' : 'border-gray-600'
-              }`}
-            />
-            {errors.kills && <p className="text-danger text-xs mt-1">{errors.kills}</p>}
+        <div className="bg-gradient-to-br from-dark-700/80 to-dark-800/80 backdrop-blur-sm rounded-2xl p-6 border border-primary-500/30 shadow-glow">
+          <div className="flex items-center space-x-3 mb-6">
+            <div className="w-3 h-3 bg-secondary-500 rounded-full animate-pulse"></div>
+            <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary-400 to-success font-cinzel">
+              Параметры расчета
+            </h3>
           </div>
+          
+          <div className="grid grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-300 flex items-center space-x-2">
+                <span className="w-2 h-2 bg-primary-500 rounded-full"></span>
+                <span>Убийства</span>
+              </label>
+              <input
+                type="number"
+                min="0"
+                value={formData.kills}
+                onChange={(e) => handleInputChange('kills', e.target.value)}
+                className={`w-full px-4 py-3 bg-dark-800/60 border rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300 ${
+                  errors.kills ? 'border-danger shadow-glow' : 'border-primary-500/30 hover:border-primary-500/60'
+                }`}
+                placeholder="0"
+              />
+              {errors.kills && <p className="text-danger text-xs mt-1 flex items-center space-x-1">
+                <span className="w-1 h-1 bg-danger rounded-full"></span>
+                <span>{errors.kills}</span>
+              </p>}
+            </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Бонус за убийство
-            </label>
-            <input
-              type="number"
-              min="0"
-              value={formData.bonus}
-              onChange={(e) => handleInputChange('bonus', e.target.value)}
-              className={`w-full px-3 py-2 bg-gray-700 border rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary ${
-                errors.bonus ? 'border-danger' : 'border-gray-600'
-              }`}
-            />
-            {errors.bonus && <p className="text-danger text-xs mt-1">{errors.bonus}</p>}
-          </div>
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-300 flex items-center space-x-2">
+                <span className="w-2 h-2 bg-secondary-500 rounded-full"></span>
+                <span>Бонус за убийство</span>
+              </label>
+              <input
+                type="number"
+                min="0"
+                value={formData.bonus}
+                onChange={(e) => handleInputChange('bonus', e.target.value)}
+                className={`w-full px-4 py-3 bg-dark-800/60 border rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-secondary transition-all duration-300 ${
+                  errors.bonus ? 'border-danger shadow-glow' : 'border-secondary-500/30 hover:border-secondary-500/60'
+                }`}
+                placeholder="0"
+              />
+              {errors.bonus && <p className="text-danger text-xs mt-1 flex items-center space-x-1">
+                <span className="w-1 h-1 bg-danger rounded-full"></span>
+                <span>{errors.bonus}</span>
+              </p>}
+            </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Награды (0-4)
-            </label>
-            <input
-              type="number"
-              min="0"
-              max="4"
-              value={formData.rewards}
-              onChange={(e) => handleInputChange('rewards', e.target.value)}
-              className={`w-full px-3 py-2 bg-gray-700 border rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary ${
-                errors.rewards ? 'border-danger' : 'border-gray-600'
-              }`}
-            />
-            {errors.rewards && <p className="text-danger text-xs mt-1">{errors.rewards}</p>}
-          </div>
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-300 flex items-center space-x-2">
+                <span className="w-2 h-2 bg-accent rounded-full"></span>
+                <span>Награды (0-4)</span>
+              </label>
+              <input
+                type="number"
+                min="0"
+                max="4"
+                value={formData.rewards}
+                onChange={(e) => handleInputChange('rewards', e.target.value)}
+                className={`w-full px-4 py-3 bg-dark-800/60 border rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-accent transition-all duration-300 ${
+                  errors.rewards ? 'border-danger shadow-glow' : 'border-accent/30 hover:border-accent/60'
+                }`}
+                placeholder="0"
+              />
+              {errors.rewards && <p className="text-danger text-xs mt-1 flex items-center space-x-1">
+                <span className="w-1 h-1 bg-danger rounded-full"></span>
+                <span>{errors.rewards}</span>
+              </p>}
+            </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Дополнительный штраф
-            </label>
-            <input
-              type="number"
-              min="0"
-              value={formData.penalty}
-              onChange={(e) => handleInputChange('penalty', e.target.value)}
-              className={`w-full px-3 py-2 bg-gray-700 border rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary ${
-                errors.penalty ? 'border-danger' : 'border-gray-600'
-              }`}
-            />
-            {errors.penalty && <p className="text-danger text-xs mt-1">{errors.penalty}</p>}
-          </div>
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-300 flex items-center space-x-2">
+                <span className="w-2 h-2 bg-danger rounded-full"></span>
+                <span>Дополнительный штраф</span>
+              </label>
+              <input
+                type="number"
+                min="0"
+                value={formData.penalty}
+                onChange={(e) => handleInputChange('penalty', e.target.value)}
+                className={`w-full px-4 py-3 bg-dark-800/60 border rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-danger transition-all duration-300 ${
+                  errors.penalty ? 'border-danger shadow-glow' : 'border-danger/30 hover:border-danger/60'
+                }`}
+                placeholder="0"
+              />
+              {errors.penalty && <p className="text-danger text-xs mt-1 flex items-center space-x-1">
+                <span className="w-1 h-1 bg-danger rounded-full"></span>
+                <span>{errors.penalty}</span>
+              </p>}
+            </div>
 
-          <div className="col-span-2">
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Множитель
-            </label>
-            <input
-              type="number"
-              min="0.1"
-              step="0.1"
-              value={formData.multiplier}
-              onChange={(e) => handleInputChange('multiplier', e.target.value)}
-              className={`w-full px-3 py-2 bg-gray-700 border rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary ${
-                errors.multiplier ? 'border-danger' : 'border-gray-600'
-              }`}
-            />
-            {errors.multiplier && <p className="text-danger text-xs mt-1">{errors.multiplier}</p>}
+            <div className="col-span-2 space-y-2">
+              <label className="block text-sm font-medium text-gray-300 flex items-center space-x-2">
+                <span className="w-2 h-2 bg-warning rounded-full"></span>
+                <span>Множитель</span>
+              </label>
+              <input
+                type="number"
+                min="0.1"
+                step="0.1"
+                value={formData.multiplier}
+                onChange={(e) => handleInputChange('multiplier', e.target.value)}
+                className={`w-full px-4 py-3 bg-dark-800/60 border rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-warning transition-all duration-300 ${
+                  errors.multiplier ? 'border-danger shadow-glow' : 'border-warning/30 hover:border-warning/60'
+                }`}
+                placeholder="1.0"
+              />
+              {errors.multiplier && <p className="text-danger text-xs mt-1 flex items-center space-x-1">
+                <span className="w-1 h-1 bg-danger rounded-full"></span>
+                <span>{errors.multiplier}</span>
+              </p>}
+            </div>
           </div>
         </div>
 
         {/* Результат расчета */}
-        <div className="bg-gray-700 rounded-lg p-4">
-          <h3 className="text-lg font-semibold text-white mb-3">Результат расчета</h3>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-success">
-                +{result.toFixed(0)}
+        <div className="bg-gradient-to-br from-dark-700/80 to-dark-800/80 backdrop-blur-sm rounded-2xl p-6 border border-primary-500/30 shadow-glow">
+          <div className="flex items-center space-x-3 mb-6">
+            <div className="w-3 h-3 bg-success rounded-full animate-pulse"></div>
+            <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-success to-secondary-400 font-cinzel">
+              Результат расчета
+            </h3>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-6">
+            <div className="text-center bg-gradient-to-br from-success/10 to-success/5 rounded-xl p-6 border border-success/30">
+              <div className="relative">
+                <div className="text-4xl font-bold text-success mb-2">
+                  +{result.toFixed(0)}
+                </div>
+                <div className="text-sm text-gray-300 font-medium">Очки</div>
+                <div className="absolute inset-0 bg-success/10 rounded-xl blur-sm animate-pulse"></div>
               </div>
-              <div className="text-sm text-gray-400">Очки</div>
             </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-danger">
-                -{penalty.toFixed(0)}
+            <div className="text-center bg-gradient-to-br from-danger/10 to-danger/5 rounded-xl p-6 border border-danger/30">
+              <div className="relative">
+                <div className="text-4xl font-bold text-danger mb-2">
+                  -{penalty.toFixed(0)}
+                </div>
+                <div className="text-sm text-gray-300 font-medium">Штраф</div>
+                <div className="absolute inset-0 bg-danger/10 rounded-xl blur-sm animate-pulse"></div>
               </div>
-              <div className="text-sm text-gray-400">Штраф</div>
+            </div>
+          </div>
+          
+          {/* Итоговый результат */}
+          <div className="mt-6 text-center">
+            <div className="bg-gradient-to-r from-primary-500/20 to-accent/20 rounded-xl p-4 border border-primary-500/30">
+              <div className="text-lg text-gray-300 mb-2">Итоговый результат:</div>
+              <div className={`text-3xl font-bold ${
+                result - penalty > 0 ? 'text-success' : 'text-danger'
+              }`}>
+                {result - penalty > 0 ? '+' : ''}{(result - penalty).toFixed(0)}
+              </div>
             </div>
           </div>
         </div>
 
         {/* Кнопки */}
-        <div className="flex justify-between">
-          <Button variant="ghost" onClick={handleReset}>
-            Сбросить
+        <div className="flex justify-between items-center">
+          <Button variant="ghost" onClick={handleReset} className="hover:scale-105 transition-transform duration-300">
+            <span className="flex items-center space-x-2">
+              <span className="w-2 h-2 bg-warning rounded-full"></span>
+              <span>Сбросить</span>
+            </span>
           </Button>
-          <div className="space-x-3">
-            <Button variant="secondary" onClick={onClose}>
-              Отмена
+          <div className="flex space-x-4">
+            <Button variant="secondary" onClick={onClose} className="hover:scale-105 transition-transform duration-300">
+              <span className="flex items-center space-x-2">
+                <span className="w-2 h-2 bg-gray-400 rounded-full"></span>
+                <span>Отмена</span>
+              </span>
             </Button>
-            <Button onClick={handleSave}>
-              Сохранить
+            <Button onClick={handleSave} className="hover:scale-105 transition-transform duration-300 shadow-glow">
+              <span className="flex items-center space-x-2">
+                <span className="w-2 h-2 bg-success rounded-full animate-pulse"></span>
+                <span>Сохранить</span>
+              </span>
             </Button>
           </div>
         </div>
